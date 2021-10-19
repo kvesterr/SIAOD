@@ -1,6 +1,7 @@
 import player
 
 if __name__ == '__main__':
+    # Чтение файла
     file = open('in.txt', 'r').readlines()
     out_string = ''
     a = 0
@@ -9,6 +10,7 @@ if __name__ == '__main__':
     d = 0
     e = 0
 
+    # Распределение данных с файла в соотв. переменные
     for i in range(len(file)):
         if i == 0:
             count = int(file[0])
