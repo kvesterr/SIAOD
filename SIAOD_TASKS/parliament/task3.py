@@ -1,29 +1,43 @@
 def thc(s1):
-        chislo10 = int(s1)
-        for base in range(2, 10**9):
-            if not (str(chislo10).__contains__(str(base))):
-                for i in range(chislo10):
-                    num = in_any_base(i, base)
-                    if str(num) == str(chislo10):
-                        D = i
-                        B = -1
-                        if (base >= 2) and (base <= 10 ** 9):
-                            B = base
-                        x = D//2
-                        if (x >= 2) and (x <= 10 ** 9):
-                            X = x
-                        else:
-                            X = -1
-                        if (not (B == -1)) and (not (X == -1)):
-                            return 'B = ' + str(B) + ', X = ' + str(X)
-        return -1
+    """
+        :param s1: Строка из N десятичных цифр
+        :return: Если решение существует: два числа - основание системы счисления, делитель числа D. Если решения не
+    """
+
+    chislo10 = int(s1)  # Входное число в десятичной системе счисления
+    for base in range(2, 10 ** 9):  # Перебор оснований систем счислений от 2 до 10^9
+        if not (str(chislo10).__contains__(str(base))):  # Если входное число не содержит цифр больших основания СС
+            for i in range(chislo10):  # Перебор чисел от 0 до входного числа
+                num = in_any_base(i, base)  # Перевод i в систему счисления base
+                if str(num) == str(chislo10):  # Если числа внешне соответствуют
+                    D = i
+                    B = -1
+                    if (base >= 2) and (base <= 10 ** 9):
+                        B = base
+                    x = D // 2
+                    if (x >= 2) and (x <= 10 ** 9):  # Проверка входят ли переменные в заданный диапазон
+                        X = x
+                    else:
+                        X = -1
+                    if (not (B == -1)) and (not (X == -1)):  # Если решение найдено (переменные B и X изменились)
+                        return 'B = ' + str(B) + ', X = ' + str(X)  # Возвращаем B и X
+
+    return -1  # Если решений в заданном диапазоне не было найдено
+
 
 def in_any_base(num, base):
+    """
+    Метод возвращает число num переведенное в систему счисления base
+        :param base: Основание системы счисления
+        :param num: Число которое нужно перевести
+        :return: Число num в системе счисления base
+    """
     newNum = ''
     while num > 0:
         newNum = str(num % base) + newNum
         num //= base
     return newNum
+
 
 if __name__ == '__main__':
     s1 = input('Введите строку из десятичных цифр.\n')
