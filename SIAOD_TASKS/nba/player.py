@@ -1,6 +1,8 @@
 class player:
+    """ Класс описывающий игрока NBA """
 
     def __init__(self, height, wingspan, avg_points, avg_takes, avg_passes):
+        """Конструктор класса игрока NBA"""
         self.height = height
         self.wingspan = wingspan
         self.avg_points = avg_points
@@ -8,6 +10,7 @@ class player:
         self.avg_passes = avg_passes
 
     def get_player_category(self):
+        """Метод возвращающий категорию объекта игрока"""
         top_half = 0
         count_goods = 0
         count_sgoods = 0
