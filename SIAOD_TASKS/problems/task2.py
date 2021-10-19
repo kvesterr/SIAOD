@@ -1,4 +1,6 @@
 def max_chislo(arr):
+    """ Функция составляет из списка входных чисел, максимально вохможное число по значению """
+    # Инициализация стеков, в стеках храню пару [Число(str), Стоимость(int)]
     stck1 = []
     stck2 = []
     # Проходимся по исходному массиву и сортируем ценные числа в стэк
@@ -7,7 +9,7 @@ def max_chislo(arr):
         s1 = str(arr[i])
         for a in s1:
             worth += int(a)
-        worth = worth/len(s1)
+        worth = worth/len(s1)  # Рассчет ценности числа
         if len(stck1) <= 0:  # Если stck1 пуст просто записываем в него рассматриваемое число
             stck1.append([s1, worth])
 
@@ -18,7 +20,8 @@ def max_chislo(arr):
                 stck1.append(last)
                 stck1.append([s1, worth])
 
-            elif worth < last[1]:  # При этом условии перегоняем элементы из stck1 в stck2 пока не найдем подходящее место
+            elif worth < last[1]:  # При этом условии перегоняем элементы из stck1 в stck2 пока не найдем подходящее
+                # место
                 while worth < last[1]:
                     stck2.append(last)
                     try:
@@ -29,7 +32,8 @@ def max_chislo(arr):
                             while len(stck2) > 0:
                                 stck1.append(stck2.pop())
 
-                        elif worth == last[1]:  # При этом условии сравниваем количество цифр в числах, большую ценность имеет короткое
+                        elif worth == last[1]:  # При этом условии сравниваем количество цифр в числах, большую ценность
+                            # имеет короткое
                             if len(s1) < len(last[0]):  # Тут у рассматриваемого числа ценность больше
                                 stck1.append(last)
                                 stck1.append([s1, worth])
@@ -52,7 +56,8 @@ def max_chislo(arr):
                             stck1.append(stck2.pop())
                         break
 
-            elif worth == last[1]:  # При этом условии сравниваем количество цифр в числах, большую ценность имеет короткое
+            elif worth == last[1]:  # При этом условии сравниваем количество цифр в числах, большую ценность имеет
+                # короткое
                 if len(s1) < len(last[0]):  # Тут у рассматриваемого числа ценность больше
                     stck1.append(last)
                     stck1.append([s1, worth])
